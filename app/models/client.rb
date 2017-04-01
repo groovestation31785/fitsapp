@@ -1,6 +1,7 @@
 require 'bcrypt'
 
 class Client < ApplicationRecord
+  has_many :messages
   validates :name, :email, :username, presence: true
   validates_inclusion_of :trainer, in: [true, false]
   validates :email, :username, uniqueness: true
