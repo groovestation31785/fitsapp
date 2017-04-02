@@ -8,15 +8,15 @@ class SessionsController < ApplicationController
     @client = Client.find_by(username: params_username)
     if @client && @client.authenticate(params_password)
       log_in(@client)
-      redirect_to messages_path
+      redirect_to messages_path, flash[:success] = "You are now logged in!"
     else
-      redirect_to signup_path, notice: "You must use the proper credentials"
+      redirect_to signup_path,flash[:error] = "You must use the proper credentials"
     end
   end
 
   def destroy
     log_out
-    redirect_to signup_path, notice: 'You are now logged out!!'
+    redirect_to login_path, flash[:success] = 'You are now logged out!!'
   end
 
   private

@@ -8,7 +8,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     if @client.save
       log_in @client
-      redirect_to messages_path, notice: "You are now logged in!"
+      redirect_to messages_path, flash[:success] = "You are now logged in!"
     else
       redirect_to signup_path, notice: "You must give the correct information to continue!"
     end
