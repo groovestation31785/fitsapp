@@ -1,9 +1,9 @@
-<div class="container-fullwidth" id="main">
+<!-- <div class="container-fullwidth" id="main"> -->
   <nav class="navbar navbar-inverse" style="border-radius:0px;" >
     <div class="container">
       <ul class="nav navbar-nav pull-right">
-        <% if current_user %>
-        <li> <%= link_to "Messages", messages_path %> </li>
+        <% if current_client %>
+        <li> <%= link_to (current_client.username + "'s Messages"), messages_path %> </li>
         <li> <%= link_to "Log out", logout_path %> </li>
       <% else %>
         <li> <%= link_to "Log in", login_path %> </li>
@@ -11,4 +11,4 @@
       </ul>
       </div>
   </nav>
-</div>
+<!-- </div> -->
