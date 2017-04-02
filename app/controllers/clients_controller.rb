@@ -6,10 +6,10 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
-      log_in(@client)
+      log_in @client
       redirect_to messages_path, notice: "You are now logged in!"
     else
-      redirect_to signin_path, notice: "You must give the correct information to continue!"
+      redirect_to signup_path, notice: "You must give the correct information to continue!"
     end
   end
 
