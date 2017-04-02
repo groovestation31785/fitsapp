@@ -1,8 +1,6 @@
-<h3>Messages</h3>
-
 <div id ="sent-messages">
   <% if @sent_messages %>
-    <h4>Sent:</h4>
+    <h2>Sent:</h2>
     <% @sent_messages.each do |message| %>
     <div class="entire-message">
       <p class="subject-line"><%= link_to (message.subject), message_path(message) %></p>
@@ -13,7 +11,7 @@
 </div>
 <div id ="received-messages">
   <% if @received_messages %>
-    <h4>Received:</h4>
+    <h2>Received:</h2>
     <% @received_messages.each do |message| %>
     <div class="entire-message">
       <p class="subject-line"><%= link_to (message.subject), message_path(message) %></p>
