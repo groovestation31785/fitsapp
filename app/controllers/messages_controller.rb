@@ -2,8 +2,12 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show]
 
   def index
+    if current_user
     # if logged in, find sent messages and received messages with the current user's id
     # set that to @messages
+    else
+      redirect_to signin_path, notice: 'You have to be logged it to do that!!'
+    end
   end
 
   def show
@@ -11,18 +15,18 @@ class MessagesController < ApplicationController
 
   def new
     if current_user
-      @comment = Comment.new
+      @message = Message.new
     else
-      redirect_to root_path, notice: 'You have to be logged it to do that!!'
+      redirect_to signin_path, notice: 'You have to be logged it to do that!!'
     end
   end
 
   def create
-    @comment = Comment.new(comment_params)
+    @receiver = Client.find_by(params[:username])
+    @message = Message.new(messsage_params)
     respond_to do |format|
-      if @comment.save
-        format.js {render json: @comment.to_json}
-        format.html { redirect_to pin_path(@pin), notice: 'Comment was successfully created.' }
+      if @message.save
+        format.html { redirect_to messages_path, notice: 'Message was successfully sent.' }
       else
         format.html { render :new }
       end
@@ -30,15 +34,11 @@ class MessagesController < ApplicationController
   end
 
   private
-    def set_comment
-      @comment = Comment.find(params[:id])
+    def set_message
+      @message = Message.find(params[:id])
     end
 
-    def set_pin
-      @pin = Pin.find(params[:pin_id])
-    end
-
-    def comment_params
-      params.require(:comment).permit(:user_id, :content, :pin_id)
+    def message_params
+      params.require(:message).permit(:subject, :content, :sender_id, :username)
     end
 end
