@@ -1,20 +1,20 @@
 module SessionsHelper
 
-  def current_user
-    @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+  def current_client
+    @current_client ||= User.find_by_id(session[:client_id]) if session[:client_id]
   end
 
   def logged_in?
-    current_user
+    current_client
   end
 
-  def log_in(user)
-    session[:user_id] = user.id
+  def log_in(client)
+    session[:client_id] = client.id
   end
 
   def log_out
-    session.delete(:user_id)
-    current_user = nil
+    session.delete(:client_id)
+    @current_client = nil
   end
 
 end

@@ -2,12 +2,10 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show]
 
   def index
-    if current_user
     # if logged in, find sent messages and received messages with the current user's id
     # set that to @messages
-    else
-      redirect_to signin_path, notice: 'You have to be logged it to do that!!'
-    end
+
+      # redirect_to signin_path, notice: 'You have to be logged it to do that!!'
   end
 
   def show
@@ -17,7 +15,7 @@ class MessagesController < ApplicationController
     if current_user
       @message = Message.new
     else
-      redirect_to signin_path, notice: 'You have to be logged it to do that!!'
+      redirect_to signup_path, notice: 'You have to be logged it to do that!!'
     end
   end
 
