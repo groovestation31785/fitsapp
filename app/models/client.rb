@@ -17,4 +17,9 @@ class Client < ApplicationRecord
     self.password_hash = @password
   end
 
+  def authenticate?(username, password)
+  return self if self.password == password && self.username == username
+  nil
+end
+
 end
