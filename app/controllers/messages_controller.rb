@@ -3,10 +3,10 @@ class MessagesController < ApplicationController
 
   def index
     if current_client
-    # if logged in, find sent messages and received messages with the current user's id
-    # set that to @messages
+      @sent_messages = current_client.sent_messages
+      @received_messages = current_client.received_messages
     else
-      redirect_to login_path, flash[:warning] = 'You have to be logged it to do that!!'
+      redirect_to login_path, flash: { alert: 'You have to be logged it to do that!!' }
     end
   end
 
@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
     if current_client
       @message = Message.new
     else
-      redirect_to signup_path, flash[:warning] = 'You have to be logged it to do that!!'
+      redirect_to signup_path, flash: { alert: 'You have to be logged it to do that!!' }
     end
   end
 
@@ -26,9 +26,9 @@ class MessagesController < ApplicationController
     @message = Message.new(messsage_params)
     respond_to do |format|
       if @message.save
-        format.html { redirect_to messages_path, flash[:success] = 'Message was successfully sent.' }
+        format.html { redirect_to messages_path, flash: { success: 'Message was successfully sent.' }}
       else
-        format.html { render :new, flash[:warning] = 'You must fill in all fields correctly!!'}
+        format.html { render :new, flash: { error: 'You must fill in all fields correctly!!' }}
       end
     end
   end
