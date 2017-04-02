@@ -13,3 +13,18 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
  */
+
+ #sent-messages {
+   float: left;
+   width: 65%;
+   margin-left: 3%;
+   overflow: hidden;
+ }
+
+ #received-messages {
+   overflow: hidden;
+ }
+
+ .subject-line {
+   font-size: 1.5em;
+ }
