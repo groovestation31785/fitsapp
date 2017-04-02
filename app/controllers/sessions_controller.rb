@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     @client = Client.find_by(username: params_username)
     if @client && @Client.authenticate(params_password)
       log_in(@client)
-      render
+      render ''
     else
       flash[:notice] = "You must be logged in with proper credentials"
       render 'new'
