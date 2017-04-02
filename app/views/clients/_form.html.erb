@@ -18,8 +18,11 @@
       <%= f.password_field :password %>
     </div>
     <div>
-      <%= f.check_box :trainer %>
-      <%= f.label :trainer, "I am a trainer" %>
+      <%= f.label :trainer, "Are you a trainer?" %>
+      <%= f.label 'trainer_true', 'Yes' %>
+      <%= f.radio_button :trainer, true %>
+      <%= f.label 'trainer_false', 'No' %>
+      <%= f.radio_button :trainer, false %>
     </div>
     <div>
       <%= f.submit "Create my account", class: "btn btn-primary form_btn" %>
