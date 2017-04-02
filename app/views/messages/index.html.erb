@@ -1,23 +1,28 @@
-<div id ="sent-messages">
-  <% if @sent_messages %>
+<% if @sent_messages %>
+  <div id ="sent-messages">
     <h2>Sent:</h2>
     <% @sent_messages.each do |message| %>
-    <div class="entire-message">
-      <p class="subject-line"><%= link_to (message.subject), message_path(message) %></p>
-      <p><%= message.created_at.strftime("%d %b, %Y") %></p>
-    </div>
+      <div class="entire-message">
+        <p class="subject-line"><%= link_to (message.subject), message_path(message) %></p>
+        <p><%= message.created_at.strftime("%d %b, %Y") %></p>
+      </div>
     <% end %>
-  <% end %>
-</div>
-<div id ="received-messages">
-  <% if @received_messages %>
+  </div>
+<% end %>
+
+<% if @received_messages %>
+  <div id ="received-messages">
     <h2>Received:</h2>
     <% @received_messages.each do |message| %>
-    <div class="entire-message">
-      <p class="subject-line"><%= link_to (message.subject), message_path(message) %></p>
-      <p>From: <%= message.sender.name %></p>
-      <p><%= message.created_at.strftime("%d %b, %Y") %></p>
-    </div>
+      <div class="entire-message">
+        <p class="subject-line"><%= link_to (message.subject), message_path(message) %></p>
+        <p>From: <%= message.sender.name %></p>
+        <p><%= message.created_at.strftime("%d %b, %Y") %></p>
+      </div>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
+<% if (@sent_messages && @received_messages) == nil %>
+  <p>You don't have any messages yet!</p>
+<% end %>

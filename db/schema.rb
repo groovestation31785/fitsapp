@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20170401224111) do
     t.string   "email"
     t.string   "username"
     t.string   "password_digest"
-    t.boolean  "trainer",         default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.boolean  "trainer"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "messages", force: :cascade do |t|

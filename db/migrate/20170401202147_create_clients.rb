@@ -5,7 +5,7 @@ class CreateClients < ActiveRecord::Migration[5.0]
       t.string :email
       t.string :username
       t.string :password_digest
-      t.boolean :trainer, default: false
+      t.boolean :trainer
 
       t.timestamps
     end
