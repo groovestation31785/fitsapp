@@ -1,0 +1,14 @@
+<%= form_for @message do |f| %>
+  <%= f.label 'Send to:' %>
+  <%= f.text_field :username %>
+
+  <%= f.label 'Subject:' %>
+  <%= f.text_field :subject %>
+
+  <%= f.label 'Content:' %>
+  <%= f.textarea :content %>
+  <%= f.hidden_field :sender_id, value: current_user.id %>
+  <%= f.hidden_field :receiver_id %>
+
+  <%= f.submit %>
+<% end %>
