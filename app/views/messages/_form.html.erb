@@ -2,10 +2,10 @@
   <%= f.label 'Send to:' %>
   <%= f.text_field :username %>
 
-  <%= f.label 'Subject:' %>
+  <%= f.label :subject %>
   <%= f.text_field :subject %>
 
-  <%= f.label 'Content:' %>
+  <%= f.label :content %>
   <%= f.textarea :content %>
   <%= f.hidden_field :sender_id, value: current_user.id %>
   <%= f.hidden_field :receiver_id %>
