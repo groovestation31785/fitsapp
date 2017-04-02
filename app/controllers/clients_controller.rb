@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
   def new
     @client = Client.new
+    render 'new'
   end
 
   def create

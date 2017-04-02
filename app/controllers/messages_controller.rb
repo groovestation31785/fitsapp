@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show]
 
-  def home
+  def index
     # if logged in, find sent messages and received messages with the current user's id
     # set that to @messages
 
