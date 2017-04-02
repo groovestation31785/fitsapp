@@ -1,5 +1,5 @@
-<h3><%= @message.subject %></h3>
-<p><%= @message.content %></p>
+<h3>Subject: <%= @message.subject %></h3>
+<p>Content: <%= @message.content %></p>
 <% if @message.sender == current_client %>
   <p>Sent to: <%= @message.receiver.name %></p>
 <% elsif @message.receiver == current_client %>

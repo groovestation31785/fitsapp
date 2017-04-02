@@ -2,20 +2,24 @@
 
 <div id ="sent-messages">
   <% if @sent_messages %>
+    <h4>Sent:</h4>
     <% @sent_messages.each do |message| %>
+    <div class="entire-message">
       <p class="subject-line"><%= link_to (message.subject), message_path(message) %></p>
       <p><%= message.created_at.strftime("%d %b, %Y") %></p>
+    </div>
     <% end %>
   <% end %>
 </div>
 <div id ="received-messages">
   <% if @received_messages %>
+    <h4>Received:</h4>
     <% @received_messages.each do |message| %>
+    <div class="entire-message">
       <p class="subject-line"><%= link_to (message.subject), message_path(message) %></p>
       <p>From: <%= message.sender.name %></p>
       <p><%= message.created_at.strftime("%d %b, %Y") %></p>
+    </div>
     <% end %>
   <% end %>
 </div>
-
-<%= link_to 'New Message', new_message_path %>
