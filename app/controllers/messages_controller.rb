@@ -22,8 +22,9 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @receiver = Client.find_by(params[:username])
-    @message = Message.new(messsage_params)
+    @message = Message.new(message_params)
+    @receiver = Client.find_by(params[:name])
+    @message.receiver = @receiver
     respond_to do |format|
       if @message.save
         format.html { redirect_to messages_path, flash: { success: 'Message was successfully sent.' }}
@@ -39,6 +40,6 @@ class MessagesController < ApplicationController
     end
 
     def message_params
-      params.require(:message).permit(:subject, :content, :sender_id, :username)
+      params.require(:message).permit(:subject, :content, :sender_id, :name)
     end
 end
