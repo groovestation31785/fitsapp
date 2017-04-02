@@ -1,1 +1,23 @@
-<h3>Messages</h3>
+<div id ="sent-messages">
+  <% if @sent_messages %>
+    <h2>Sent:</h2>
+    <% @sent_messages.each do |message| %>
+    <div class="entire-message">
+      <p class="subject-line"><%= link_to (message.subject), message_path(message) %></p>
+      <p><%= message.created_at.strftime("%d %b, %Y") %></p>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+<div id ="received-messages">
+  <% if @received_messages %>
+    <h2>Received:</h2>
+    <% @received_messages.each do |message| %>
+    <div class="entire-message">
+      <p class="subject-line"><%= link_to (message.subject), message_path(message) %></p>
+      <p>From: <%= message.sender.name %></p>
+      <p><%= message.created_at.strftime("%d %b, %Y") %></p>
+    </div>
+    <% end %>
+  <% end %>
+</div>

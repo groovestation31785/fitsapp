@@ -1,7 +1,7 @@
 module SessionsHelper
 
   def current_client
-    @current_client ||= User.find_by_id(session[:client_id]) if session[:client_id]
+    @current_client ||= Client.find_by_id(session[:client_id]) if session[:client_id]
   end
 
   def logged_in?

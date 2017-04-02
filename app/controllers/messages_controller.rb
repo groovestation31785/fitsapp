@@ -2,31 +2,34 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show]
 
   def index
-    # if logged in, find sent messages and received messages with the current user's id
-    # set that to @messages
-
-      # redirect_to signin_path, notice: 'You have to be logged it to do that!!'
+    if current_client
+      @sent_messages = current_client.sent_messages
+      @received_messages = current_client.received_messages
+    else
+      redirect_to login_path, flash: { alert: 'You have to be logged it to do that!!' }
+    end
   end
 
   def show
   end
 
   def new
-    if current_user
+    if current_client
       @message = Message.new
     else
-      redirect_to signup_path, notice: 'You have to be logged it to do that!!'
+      redirect_to signup_path, flash: { alert: 'You have to be logged it to do that!!' }
     end
   end
 
   def create
-    @receiver = Client.find_by(params[:username])
-    @message = Message.new(messsage_params)
+    @message = Message.new(message_params)
+    @receiver = Client.find_by(params[:name])
+    @message.receiver = @receiver
     respond_to do |format|
       if @message.save
-        format.html { redirect_to messages_path, notice: 'Message was successfully sent.' }
+        format.html { redirect_to messages_path, flash: { success: 'Message was successfully sent.' }}
       else
-        format.html { render :new }
+        format.html { render :new, flash: { error: 'You must fill in all fields correctly!!' }}
       end
     end
   end
@@ -37,6 +40,6 @@ class MessagesController < ApplicationController
     end
 
     def message_params
-      params.require(:message).permit(:subject, :content, :sender_id, :username)
+      params.require(:message).permit(:subject, :content, :sender_id, :name)
     end
 end

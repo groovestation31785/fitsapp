@@ -18,6 +18,10 @@
       <%= f.password_field :password %>
     </div>
     <div>
+      <%= f.check_box :trainer %>
+      <%= f.label :trainer, "I am a trainer" %>
+    </div>
+    <div>
       <%= f.submit "Create my account", class: "btn btn-primary form_btn" %>
     </div>
     <% end %>
